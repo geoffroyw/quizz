@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :exams do
     resources :questions do
-      resources :answers
+      resources :answers, :only => [:edit, :create, :new, :destroy, :update]
     end
   end
 

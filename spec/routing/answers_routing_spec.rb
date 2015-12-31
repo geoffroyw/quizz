@@ -3,16 +3,8 @@ require 'rails_helper'
 RSpec.describe AnswersController, type: :routing do
   describe 'routing' do
 
-    it 'routes to #index' do
-      expect(:get => 'exams/1/questions/2/answers').to route_to('answers#index', :exam_id => '1', :question_id => '2')
-    end
-
     it 'routes to #new' do
       expect(:get => 'exams/1/questions/2/answers/new').to route_to('answers#new', :exam_id => '1', :question_id => '2')
-    end
-
-    it 'routes to #show' do
-      expect(:get => 'exams/1/questions/2/answers/1').to route_to('answers#show', :id => '1', :exam_id => '1', :question_id => '2')
     end
 
     it 'routes to #edit' do

@@ -40,22 +40,6 @@ RSpec.describe AnswersController, type: :controller do
   # AnswersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe 'GET #index' do
-    it 'assigns all answers as @answers' do
-      answer = Answer.create! valid_attributes
-      get :index, {:question_id => @question.id, :exam_id => @question.exam.id}, valid_session
-      expect(assigns(:answers)).to eq([answer])
-    end
-  end
-
-  describe 'GET #show' do
-    it 'assigns the requested answer as @answer' do
-      answer = Answer.create! valid_attributes
-      get :show, {:id => answer.to_param, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
-      expect(assigns(:answer)).to eq(answer)
-    end
-  end
-
   describe 'GET #new' do
     it 'assigns a new answer as @answer' do
       get :new, {:question_id => @question.id, :exam_id => @question.exam.id}, valid_session
@@ -86,9 +70,9 @@ RSpec.describe AnswersController, type: :controller do
         expect(assigns(:answer).question).to eq(@question)
       end
 
-      it 'redirects to the created answer' do
+      it 'redirects to the created answer question' do
         post :create, {:answer => valid_attributes, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
-        expect(response).to redirect_to(exam_question_answer_path(Answer.last.question.exam, Answer.last.question, Answer.last))
+        expect(response).to redirect_to(exam_question_path(Answer.last.question.exam, Answer.last.question))
       end
     end
 
@@ -124,10 +108,10 @@ RSpec.describe AnswersController, type: :controller do
         expect(assigns(:answer)).to eq(answer)
       end
 
-      it 'redirects to the answer' do
+      it 'redirects to the question of the answer' do
         answer = Answer.create! valid_attributes
         put :update, {:id => answer.to_param, :answer => valid_attributes, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
-        expect(response).to redirect_to(exam_question_answer_path(answer.question.exam, answer.question, answer))
+        expect(response).to redirect_to(exam_question_path(answer.question.exam, answer.question))
       end
     end
 
@@ -157,7 +141,7 @@ RSpec.describe AnswersController, type: :controller do
     it 'redirects to  the answers list' do
       answer = Answer.create! valid_attributes
       delete :destroy, {:id => answer.to_param, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
-      expect(response).to redirect_to(exam_question_answers_path(@question.exam,@question))
+      expect(response).to redirect_to(exam_question_path(@question.exam,@question))
     end
   end
 

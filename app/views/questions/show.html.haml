@@ -1,12 +1,27 @@
 %p#notice= notice
 
-%p
-  %b Text:
-  = @question.text
-%p
-  %b Exam:
-  = @question.exam.name
+%h1=@question.exam.name
+
+%h2
+  Question:
+  =@question.text
+
+%p List of all possibles answers:
+%ul
+  -@question.answers.each do |answer|
+    %li
+      =answer.text
+      \|
+      Is Correct?
+      =answer.is_correct
+      \|
+      = link_to 'Edit', edit_exam_question_answer_path(answer.question.exam, answer.question, answer)
+      \|
+      = link_to 'Destroy', exam_question_answer_path(answer.question.exam, answer.question, answer), :method => :delete, :data => { :confirm => 'Are you sure?' }
+
 
 = link_to 'Edit', edit_exam_question_path(@question.exam, @question)
 \|
-= link_to 'Back', exam_questions_path(@exam)
+= link_to 'Add answer', new_exam_question_answer_path(@question.exam, @question)
+\|
+= link_to 'Back to exam', exam_path(@question.exam)
