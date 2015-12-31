@@ -24,7 +24,7 @@ RSpec.describe ExamsController, type: :controller do
   # Exam. As you add validations to Exam, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {:intro_text => 'some text'}
+    {:intro_text => 'some text', :name => 'exam name'}
   }
 
   let(:invalid_attributes) {

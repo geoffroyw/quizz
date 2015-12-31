@@ -13,7 +13,7 @@
     - @questions.each do |question|
       %tr
         %td= question.text
-        %td= question.exam.intro_text
+        %td= question.exam.name
         %td= link_to 'Show', question
         %td= link_to 'Edit', edit_question_path(question)
         %td= link_to 'Destroy', question, :method => :delete, :data => { :confirm => 'Are you sure?' }

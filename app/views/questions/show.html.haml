@@ -5,7 +5,7 @@
   = @question.text
 %p
   %b Exam:
-  = @question.exam_id
+  = @question.exam.name
 
 = link_to 'Edit', edit_question_path(@question)
 \|
