@@ -1,23 +1,25 @@
-%h1 Listing questions
 
-%table
-  %thead
-    %tr
-      %th Text
-      %th Exam
-      %th
-      %th
-      %th
+.row
+  .col-md-12
+    %h1
+      Listing questions of exam
+      =@exam.name
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Question
+          %th Actions
 
-  %tbody
-    - @questions.each do |question|
-      %tr
-        %td= question.text
-        %td= question.exam.name
-        %td= link_to 'Show', exam_question_path(question.exam, question)
-        %td= link_to 'Edit', edit_exam_question_path(question.exam, question)
-        %td= link_to 'Destroy', exam_question_path(question.exam, question), :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %tbody
+        - @questions.each do |question|
+          %tr
+            %td= link_to question.text, exam_question_path(question.exam, question)
+            %td
+              = link_to edit_exam_question_path(question.exam, question) do
+                %span.glyphicon.glyphicon-pencil
+              = link_to exam_question_path(question.exam, question), :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                %span.glyphicon.glyphicon-trash
 
-%br
+    %br
 
-= link_to 'New Question', new_exam_question_path(@exam)
+    = link_to 'New Question', new_exam_question_path(@exam)

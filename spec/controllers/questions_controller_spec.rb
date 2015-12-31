@@ -41,10 +41,13 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'GET #index' do
-    it 'assigns all questions as @questions' do
+    it 'assigns all questions of exam as @questions' do
       question = Question.create! valid_attributes
-      get :index, {:exam_id => @exam.id}, valid_session
-      expect(assigns(:questions)).to eq([question])
+      question2 = Question.create! valid_attributes
+      question2.exam = FactoryGirl.create(:exam)
+      question2.save
+      get :index, {:exam_id => question.exam.id}, valid_session
+      expect(assigns(:questions)).to contain_exactly(question)
     end
   end
 
