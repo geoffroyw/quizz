@@ -10,8 +10,8 @@
     = f.label :text
     = f.text_field :text
   .field
-    = f.label :question_id
-    = f.text_field :question_id
+    = f.label :question
+    = f.collection_select(:question_id, Question.all, :id, :text)
   .field
     = f.label :is_correct
     = f.check_box :is_correct
