@@ -1,10 +1,12 @@
-%p
-  =link_to question.text, exam_question_path(question.exam, question)
-
--if question.answers.length == 0
-  No answers
--else
-%h3 Possible answers
-%ul
-  -question.answers.each do |answer|
-    %li= answer.text
+.section
+  -unless @errors.nil?
+    -if @errors.include? question
+      .alert.alert-danger{:role => 'alert'}
+        %strong Error!
+        You didn't selected the right answer to this question
+  %p= question.text
+  %ul.list-unstyled
+    -question.answers.each do |answer|
+      %li
+        = check_box_tag "question[#{question.id}]answer_ids[]", answer.id, @checked_answer_ids.include?(answer.id)
+        = answer.text

@@ -1,5 +1,5 @@
 class ExamsController < ApplicationController
-  before_action :set_exam, only: [:show, :edit, :update, :destroy]
+  before_action :set_exam, only: [:show, :edit, :update, :destroy, :validate]
 
   # GET /exams
   # GET /exams.json
@@ -10,6 +10,7 @@ class ExamsController < ApplicationController
   # GET /exams/1
   # GET /exams/1.json
   def show
+    @checked_answer_ids = []
   end
 
   # GET /exams/new
@@ -19,6 +20,33 @@ class ExamsController < ApplicationController
 
   # GET /exams/1/edit
   def edit
+  end
+
+  def validate
+    @errors = []
+    @checked_answer_ids = []
+
+    selected_question_ids = params[:question].nil? ? [] : params[:question].keys
+    selected_question_ids.each do |id|
+      valid_answer_for_question = Answer.where('question_id = ? and is_correct = ?', id, true)
+      selected_answers = Answer.find(params[:question][id]['answer_ids'])
+      @checked_answer_ids << selected_answers.map{|a| a.id}
+      unless valid_answer_for_question.uniq.sort == selected_answers.uniq.sort
+        @errors << Question.find(id)
+      end
+
+    end
+
+    exam_question_ids = @exam.questions.map{|q| q.id}
+    exam_question_ids.each do |id|
+      unless selected_question_ids.map{|i| i.to_s}.include? id.to_s
+        @errors << Question.find(id)
+      end
+    end
+
+    @checked_answer_ids = @checked_answer_ids.flatten
+
+    render :show
   end
 
   # POST /exams

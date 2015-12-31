@@ -50,6 +50,12 @@ RSpec.describe ExamsController, type: :controller do
       get :show, {:id => exam.to_param}, valid_session
       expect(assigns(:exam)).to eq(exam)
     end
+
+    it 'assigns @checked_answer_ids to empty array' do
+      exam = Exam.create! valid_attributes
+      get :show, {:id => exam.to_param}, valid_session
+      expect(assigns(:checked_answer_ids)).to eq([])
+    end
   end
 
   describe 'GET #new' do
@@ -99,6 +105,7 @@ RSpec.describe ExamsController, type: :controller do
       end
     end
   end
+
 
   describe 'PUT #update' do
     context 'with valid params' do
@@ -153,6 +160,54 @@ RSpec.describe ExamsController, type: :controller do
       exam = Exam.create! valid_attributes
       delete :destroy, {:id => exam.to_param}, valid_session
       expect(response).to redirect_to(exams_url)
+    end
+  end
+
+
+  describe 'POST #validate' do
+    context 'with valid params' do
+      before(:each) do
+        @exam = FactoryGirl.create(:exam)
+
+        @question1 = FactoryGirl.create(:question, :exam => @exam)
+        @question1_correct_answer = FactoryGirl.create(:answer, :question=> @question1, :is_correct => true)
+        @question1_wrong_answer = FactoryGirl.create(:answer, :question=> @question1, :is_correct => false)
+
+        @question2 = FactoryGirl.create(:question, :exam => @exam)
+        @question2_correct_answer = FactoryGirl.create(:answer, :question=> @question2, :is_correct => true)
+        @question2_wrong_answer = FactoryGirl.create(:answer, :question=> @question2, :is_correct => false)
+
+      end
+
+      it 'assigns @checked_answer_ids with the id of the selected answers' do
+        post :validate, {:id => @exam, :question => {@question1.id => {:answer_ids => [@question1_correct_answer.id]}, @question2.id => {:answer_ids => [@question2_wrong_answer.id]}}}, valid_session
+        expect(assigns(:checked_answer_ids)).to contain_exactly(@question1_correct_answer.id,@question2_wrong_answer.id)
+      end
+
+      it 'assigns @errors to empty array if all corrects answers are selected' do
+        post :validate, {:id => @exam, :question => {@question1.id => {:answer_ids => [@question1_correct_answer.id]}, @question2.id => {:answer_ids => [@question2_correct_answer.id]}}}, valid_session
+        expect(assigns(:errors)).to eq([])
+      end
+
+      it 'adds to @errors the question where no answer is selected' do
+        post :validate, {:id => @exam, :question => {@question2.id => {:answer_ids => [@question2_correct_answer.id]}}}, valid_session
+        expect(assigns(:errors)).to contain_exactly(@question1)
+      end
+
+      it 'adds to @errors the question where wrong answer is selected' do
+        post :validate, {:id => @exam, :question => {@question1.id => {:answer_ids =>[@question1_wrong_answer.id]}, @question2.id => {:answer_ids => [@question2_wrong_answer.id]}}}, valid_session
+        expect(assigns(:errors)).to contain_exactly(@question1, @question2)
+      end
+
+      it 'adds to @errors the question where wrong answer is selected only one of them is false' do
+        post :validate, {:id => @exam, :question => {@question1.id => {:answer_ids =>[@question1_correct_answer.id]}, @question2.id => {:answer_ids => [@question2_wrong_answer.id]}}}, valid_session
+        expect(assigns(:errors)).to contain_exactly(@question2)
+      end
+
+      it 'adds to @errors the question where wrong answer is selected and another question is not answered' do
+        post :validate, {:id => @exam, :question => {@question2.id => {:answer_ids => [@question2_wrong_answer.id]}}}, valid_session
+        expect(assigns(:errors)).to contain_exactly(@question1, @question2)
+      end
     end
   end
 

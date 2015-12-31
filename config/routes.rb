@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   resources :exams do
+    member do
+      post :validate
+    end
+
     resources :questions do
       resources :answers, :only => [:edit, :create, :new, :destroy, :update]
     end
