@@ -41,6 +41,7 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'GET #index' do
+    login_user
     it 'assigns all questions of exam as @questions' do
       question = Question.create! valid_attributes
       question2 = Question.create! valid_attributes
@@ -52,6 +53,7 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'GET #show' do
+    login_user
     it 'assigns the requested question as @question' do
       question = Question.create! valid_attributes
       get :show, {:id => question.to_param, :exam_id => @exam.id}, valid_session
@@ -60,6 +62,7 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'GET #new' do
+    login_user
     it 'assigns a new question as @question' do
       get :new, {:exam_id => @exam.id}, valid_session
       expect(assigns(:question)).to be_a_new(Question)
@@ -67,6 +70,7 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'GET #edit' do
+    login_user
     it 'assigns the requested question as @question' do
       question = Question.create! valid_attributes
       get :edit, {:id => question.to_param, :exam_id => @exam.id}, valid_session
@@ -75,6 +79,7 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'POST #create' do
+    login_user
     context 'with valid params' do
       it 'creates a new Question' do
         expect {
@@ -109,6 +114,7 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'PUT #update' do
+    login_user
     context 'with valid params' do
       let(:new_attributes) {
         JSON.parse(FactoryGirl.build(:question, :text => 'new text').to_json)
@@ -150,6 +156,7 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    login_user
     it 'destroys the requested question' do
       question = Question.create! valid_attributes
       expect {

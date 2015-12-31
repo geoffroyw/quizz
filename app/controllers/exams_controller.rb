@@ -1,6 +1,9 @@
 class ExamsController < ApplicationController
   before_action :set_exam, only: [:show, :edit, :update, :destroy, :validate]
 
+  before_action :authenticate_user!, only: [:new, :edit,:update, :destroy]
+
+
   # GET /exams
   # GET /exams.json
   def index

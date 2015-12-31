@@ -31,6 +31,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml', '~> 4.0', '>= 4.0.7'
 gem 'haml-rails', '~> 0.9.0'
 
+gem 'devise', '~> 3.5', '>= 3.5.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

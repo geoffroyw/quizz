@@ -6,14 +6,16 @@
       %thead
         %tr
           %th Name
-          %th Actions
+          - if user_signed_in?
+            %th Actions
 
       %tbody
         - @exams.each do |exam|
           %tr
             %td= link_to exam.name, exam
-            %td
-              = link_to edit_exam_path(exam) do
-                %span.glyphicon.glyphicon-pencil
-              = link_to exam, :method => :delete, :data => { :confirm => 'Are you sure?' } do
-                %span.glyphicon.glyphicon-trash
+            - if user_signed_in?
+              %td
+                = link_to edit_exam_path(exam) do
+                  %span.glyphicon.glyphicon-pencil
+                = link_to exam, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                  %span.glyphicon.glyphicon-trash

@@ -41,6 +41,7 @@ RSpec.describe AnswersController, type: :controller do
   let(:valid_session) { {} }
 
   describe 'GET #new' do
+    login_user
     it 'assigns a new answer as @answer' do
       get :new, {:question_id => @question.id, :exam_id => @question.exam.id}, valid_session
       expect(assigns(:answer)).to be_a_new(Answer)
@@ -48,6 +49,7 @@ RSpec.describe AnswersController, type: :controller do
   end
 
   describe 'GET #edit' do
+    login_user
     it 'assigns the requested answer as @answer' do
       answer = Answer.create! valid_attributes
       get :edit, {:id => answer.to_param, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
@@ -56,6 +58,7 @@ RSpec.describe AnswersController, type: :controller do
   end
 
   describe 'POST #create' do
+    login_user
     context 'with valid params' do
       it 'creates a new Answer' do
         expect {
@@ -90,6 +93,7 @@ RSpec.describe AnswersController, type: :controller do
   end
 
   describe 'PUT #update' do
+    login_user
     context 'with valid params' do
       let(:new_attributes) {
         JSON.parse(FactoryGirl.build(:answer, :text => 'new answer text').to_json)
@@ -131,6 +135,7 @@ RSpec.describe AnswersController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    login_user
     it 'destroys the requested answer' do
       answer = Answer.create! valid_attributes
       expect {

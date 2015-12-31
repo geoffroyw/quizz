@@ -11,5 +11,6 @@
       %ul.nav.navbar-nav
         %li.active
           =link_to 'Home', root_path
-        %li
-          =link_to 'Create exam', new_exam_path
+        - if user_signed_in?
+          %li
+            =link_to 'Create exam', new_exam_path

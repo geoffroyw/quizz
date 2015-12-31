@@ -3,6 +3,8 @@ class QuestionsController < ApplicationController
 
   before_action :set_exam
 
+  before_action :authenticate_user!
+
   # GET /questions
   # GET /questions.json
   def index

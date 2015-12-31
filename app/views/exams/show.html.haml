@@ -16,6 +16,9 @@
     = render 'question', :question => question
   =submit_tag('Send my answers', :class => 'btn btn-sm btn-success')
 
-= link_to 'Edit', edit_exam_path(@exam)
-\|
+%br
+%br
+-if user_signed_in?
+  = link_to 'Edit', edit_exam_path(@exam)
+  \|
 = link_to 'Back', exams_path

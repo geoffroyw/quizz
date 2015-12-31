@@ -3,6 +3,8 @@ class AnswersController < ApplicationController
 
   before_action :set_question
 
+  before_action :authenticate_user!
+
 
   # GET /answers/new
   def new
