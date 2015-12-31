@@ -1,24 +1,40 @@
 %p#notice= notice
 
-%h1=@question.exam.name
 
-%h2
-  Question:
-  =@question.text
+.row
+  .col-md-12
+    %h1
+      Exam:
+      =@question.exam.name
 
-%p List of all possibles answers:
-%ul
-  -@question.answers.each do |answer|
-    %li
-      =answer.text
-      \|
-      Is Correct?
-      =answer.is_correct
-      \|
-      = link_to 'Edit', edit_exam_question_answer_path(answer.question.exam, answer.question, answer)
-      \|
-      = link_to 'Destroy', exam_question_answer_path(answer.question.exam, answer.question, answer), :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %h2
+      Question:
+      =@question.text
 
+    %p List of all possibles answers:
+
+    -if @question.has_only_false_answer
+      .alert.alert-warning{:role => 'alert'}
+        %strong Warning!
+        This question does not have a correct answer
+
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Answer
+          %th Is correct?
+          %th Actions?
+
+      %tbody
+        - @question.answers.each do |answer|
+          %tr
+            %td= answer.text
+            %td= answer.is_correct
+            %td
+              = link_to edit_exam_question_answer_path(answer.question.exam, answer.question, answer) do
+                %span.glyphicon.glyphicon-pencil
+              = link_to exam_question_answer_path(answer.question.exam, answer.question, answer), :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                %span.glyphicon.glyphicon-trash
 
 = link_to 'Edit', edit_exam_question_path(@question.exam, @question)
 \|
