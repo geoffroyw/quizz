@@ -2,15 +2,15 @@ require 'rails_helper'
 
 RSpec.describe 'questions/index', type: :view do
   before(:each) do
-    exam_id = Exam.create!(:intro_text => 'exam text', :name => 'name').id
+    @exam = assign(:question,Exam.create!(:intro_text => 'exam text', :name => 'name'))
     assign(:questions, [
       Question.create!(
         :text => 'Text',
-        :exam_id => exam_id
+        :exam => @exam
       ),
       Question.create!(
         :text => 'Text',
-        :exam_id => exam_id
+        :exam => @exam
       )
     ])
   end

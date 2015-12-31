@@ -2,9 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'answers/show', type: :view do
   before(:each) do
+    @question = assign(:question,FactoryGirl.create(:question))
     @answer = assign(:answer, Answer.create!(
       :text => 'Text',
-      :question => FactoryGirl.create(:question),
+      :question => @question,
       :is_correct => false
     ))
   end

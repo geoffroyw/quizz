@@ -16,10 +16,10 @@
         %td= answer.text
         %td= answer.question.text
         %td= answer.is_correct
-        %td= link_to 'Show', answer
-        %td= link_to 'Edit', edit_answer_path(answer)
-        %td= link_to 'Destroy', answer, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to 'Show', exam_question_answer_path(answer.question.exam, answer.question, answer)
+        %td= link_to 'Edit', edit_exam_question_answer_path(answer.question.exam, answer.question, answer)
+        %td= link_to 'Destroy', exam_question_answer_path(answer.question.exam, answer.question, answer), :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Answer', new_answer_path
+= link_to 'New Answer', new_exam_question_answer_path(@question.exam, @question)

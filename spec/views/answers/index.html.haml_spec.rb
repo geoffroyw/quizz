@@ -15,6 +15,7 @@ RSpec.describe 'answers/index', type: :view do
         :is_correct => false
       )
     ])
+    assign(:exam, @question.exam)
   end
 
   it 'renders a list of answers' do

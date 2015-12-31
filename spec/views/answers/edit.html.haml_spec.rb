@@ -2,9 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'answers/edit', type: :view do
   before(:each) do
+    @question = assign(:question, FactoryGirl.create(:question))
     @answer = assign(:answer, Answer.create!(
       :text => 'MyString',
-      :question => FactoryGirl.create(:question),
+      :question => @question,
       :is_correct => false
     ))
   end
@@ -12,7 +13,7 @@ RSpec.describe 'answers/edit', type: :view do
   it 'renders the edit answer form' do
     render
 
-    assert_select 'form[action=?][method=?]', answer_path(@answer), 'post' do
+    assert_select 'form[action=?][method=?]', exam_question_answer_path(@question.exam, @question, @answer), 'post' do
 
       assert_select 'input#answer_text[name=?]', 'answer[text]'
 

@@ -1,6 +1,8 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
 
+  before_action :set_question
+
   # GET /answers
   # GET /answers.json
   def index
@@ -28,8 +30,8 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
-        format.json { render :show, status: :created, location: @answer }
+        format.html { redirect_to exam_question_answer_path(@answer.question.exam, @answer.question, @answer), notice: 'Answer was successfully created.' }
+        format.json { render :show, status: :created, location: exam_question_answer_path(@answer) }
       else
         format.html { render :new }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
@@ -42,8 +44,8 @@ class AnswersController < ApplicationController
   def update
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @answer }
+        format.html { redirect_to exam_question_answer_path(@answer.question.exam, @answer.question, @answer), notice: 'Answer was successfully updated.' }
+        format.json { render :show, status: :ok, location: exam_question_answer_path(@answer) }
       else
         format.html { render :edit }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
@@ -56,7 +58,7 @@ class AnswersController < ApplicationController
   def destroy
     @answer.destroy
     respond_to do |format|
-      format.html { redirect_to answers_url, notice: 'Answer was successfully destroyed.' }
+      format.html { redirect_to exam_question_answers_path, notice: 'Answer was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,5 +72,9 @@ class AnswersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
       params.require(:answer).permit(:text, :question_id, :is_correct)
+    end
+
+    def set_question
+      @question = Question.find(params[:question_id])
     end
 end
