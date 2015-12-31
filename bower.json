@@ -1,0 +1,25 @@
+{
+  "name": "quizz",
+  "homepage": "https://github.com/geoffroyw/quizz",
+  "authors": [
+    "Geoffroy Weyer <webweyer@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}
