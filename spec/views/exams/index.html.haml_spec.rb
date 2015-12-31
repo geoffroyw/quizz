@@ -16,7 +16,6 @@ RSpec.describe 'exams/index', type: :view do
 
   it 'renders a list of exams' do
     render
-    assert_select 'tr>td', :text => 'Intro Text'.to_s, :count => 2
     assert_select 'tr>td', :text => 'name'.to_s, :count => 2
   end
 end
