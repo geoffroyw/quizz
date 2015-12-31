@@ -83,6 +83,7 @@ RSpec.describe QuestionsController, type: :controller do
         post :create, {:question => valid_attributes, :exam_id => @exam.id}, valid_session
         expect(assigns(:question)).to be_a(Question)
         expect(assigns(:question)).to be_persisted
+        expect(assigns(:question).exam).to eq(@exam)
       end
 
       it 'redirects to the created question' do

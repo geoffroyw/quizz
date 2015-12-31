@@ -17,8 +17,6 @@ RSpec.describe 'answers/edit', type: :view do
 
       assert_select 'input#answer_text[name=?]', 'answer[text]'
 
-      assert_select 'select#answer_question_id[name=?]', 'answer[question_id]'
-
       assert_select 'input#answer_is_correct[name=?]', 'answer[is_correct]'
     end
   end

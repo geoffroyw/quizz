@@ -36,98 +36,98 @@ RSpec.describe ExamsController, type: :controller do
   # ExamsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "assigns all exams as @exams" do
+  describe 'GET #index' do
+    it 'assigns all exams as @exams' do
       exam = Exam.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:exams)).to eq([exam])
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested exam as @exam" do
+  describe 'GET #show' do
+    it 'assigns the requested exam as @exam' do
       exam = Exam.create! valid_attributes
       get :show, {:id => exam.to_param}, valid_session
       expect(assigns(:exam)).to eq(exam)
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new exam as @exam" do
+  describe 'GET #new' do
+    it 'assigns a new exam as @exam' do
       get :new, {}, valid_session
       expect(assigns(:exam)).to be_a_new(Exam)
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested exam as @exam" do
+  describe 'GET #edit' do
+    it 'assigns the requested exam as @exam' do
       exam = Exam.create! valid_attributes
       get :edit, {:id => exam.to_param}, valid_session
       expect(assigns(:exam)).to eq(exam)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Exam" do
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Exam' do
         expect {
           post :create, {:exam => valid_attributes}, valid_session
         }.to change(Exam, :count).by(1)
       end
 
-      it "assigns a newly created exam as @exam" do
+      it 'assigns a newly created exam as @exam' do
         post :create, {:exam => valid_attributes}, valid_session
         expect(assigns(:exam)).to be_a(Exam)
         expect(assigns(:exam)).to be_persisted
       end
 
-      it "redirects to the created exam" do
+      it 'redirects to the created exam' do
         post :create, {:exam => valid_attributes}, valid_session
         expect(response).to redirect_to(Exam.last)
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved exam as @exam" do
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved exam as @exam' do
         post :create, {:exam => invalid_attributes}, valid_session
         expect(assigns(:exam)).to be_a_new(Exam)
       end
 
       it "re-renders the 'new' template" do
         post :create, {:exam => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
+        expect(response).to render_template('new')
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
+  describe 'PUT #update' do
+    context 'with valid params' do
       let(:new_attributes) {
         {:intro_text => 'some new text'}
       }
 
-      it "updates the requested exam" do
+      it 'updates the requested exam' do
         exam = Exam.create! valid_attributes
         put :update, {:id => exam.to_param, :exam => new_attributes}, valid_session
         exam.reload
         assert_equal 'some new text', exam.intro_text
       end
 
-      it "assigns the requested exam as @exam" do
+      it 'assigns the requested exam as @exam' do
         exam = Exam.create! valid_attributes
         put :update, {:id => exam.to_param, :exam => valid_attributes}, valid_session
         expect(assigns(:exam)).to eq(exam)
       end
 
-      it "redirects to the exam" do
+      it 'redirects to the exam' do
         exam = Exam.create! valid_attributes
         put :update, {:id => exam.to_param, :exam => valid_attributes}, valid_session
         expect(response).to redirect_to(exam)
       end
     end
 
-    context "with invalid params" do
-      it "assigns the exam as @exam" do
+    context 'with invalid params' do
+      it 'assigns the exam as @exam' do
         exam = Exam.create! valid_attributes
         put :update, {:id => exam.to_param, :exam => invalid_attributes}, valid_session
         expect(assigns(:exam)).to eq(exam)
@@ -136,20 +136,20 @@ RSpec.describe ExamsController, type: :controller do
       it "re-renders the 'edit' template" do
         exam = Exam.create! valid_attributes
         put :update, {:id => exam.to_param, :exam => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
+        expect(response).to render_template('edit')
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested exam" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested exam' do
       exam = Exam.create! valid_attributes
       expect {
         delete :destroy, {:id => exam.to_param}, valid_session
       }.to change(Exam, :count).by(-1)
     end
 
-    it "redirects to the exams list" do
+    it 'redirects to the exams list' do
       exam = Exam.create! valid_attributes
       delete :destroy, {:id => exam.to_param}, valid_session
       expect(response).to redirect_to(exams_url)

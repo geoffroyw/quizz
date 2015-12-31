@@ -16,7 +16,6 @@ RSpec.describe 'questions/new', type: :view do
 
       assert_select 'input#question_text[name=?]', 'question[text]'
 
-      assert_select 'select#question_exam_id[name=?]', 'question[exam_id]'
     end
   end
 end

@@ -83,6 +83,7 @@ RSpec.describe AnswersController, type: :controller do
         post :create, {:answer => valid_attributes, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
         expect(assigns(:answer)).to be_a(Answer)
         expect(assigns(:answer)).to be_persisted
+        expect(assigns(:answer).question).to eq(@question)
       end
 
       it 'redirects to the created answer' do

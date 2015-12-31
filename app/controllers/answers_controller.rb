@@ -27,6 +27,7 @@ class AnswersController < ApplicationController
   # POST /answers.json
   def create
     @answer = Answer.new(answer_params)
+    @answer.question = @question
 
     respond_to do |format|
       if @answer.save
@@ -71,7 +72,7 @@ class AnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.require(:answer).permit(:text, :question_id, :is_correct)
+      params.require(:answer).permit(:text, :is_correct)
     end
 
     def set_question

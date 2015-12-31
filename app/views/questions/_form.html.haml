@@ -9,8 +9,5 @@
   .field
     = f.label :text
     = f.text_field :text
-  .field
-    = f.label :exam_id
-    = f.collection_select(:exam_id, Exam.all, :id, :intro_text)
   .actions
     = f.submit 'Save'
