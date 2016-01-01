@@ -26,6 +26,7 @@ config/secrets.yml
 .rvmrc
 
 /vendor/assets/components
+!vendor/assets/components/.gitkeep
 
 # Ignore pow environment settings
 .powenv
@@ -36,3 +37,4 @@ config/secrets.yml
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
