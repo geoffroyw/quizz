@@ -36,7 +36,7 @@
               = link_to exam_question_answer_path(answer.question.exam, answer.question, answer), :method => :delete, :data => { :confirm => 'Are you sure?' } do
                 %span.glyphicon.glyphicon-trash
 
-= link_to 'Edit', edit_exam_question_path(@question.exam, @question)
+= link_to 'Edit question', edit_exam_question_path(@question.exam, @question)
 \|
 = link_to 'Add answer', new_exam_question_answer_path(@question.exam, @question)
 \|
