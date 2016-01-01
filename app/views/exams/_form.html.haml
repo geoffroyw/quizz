@@ -6,11 +6,11 @@
         - @exam.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  .form-group
     = f.label :name
-    = f.text_field :name
-  .field
+    = f.text_field :name, :class => 'form-control'
+  .form-group
     = f.label :intro_text
-    = f.text_field :intro_text
-  .actions
-    = f.submit 'Save'
+    = f.text_area :intro_text, :class => 'form-control', :rows => 5
+  .form-group
+    = f.submit 'Save', :class => 'btn btn-success'
