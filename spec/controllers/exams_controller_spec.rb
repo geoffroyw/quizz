@@ -90,9 +90,9 @@ RSpec.describe ExamsController, type: :controller do
         expect(assigns(:exam)).to be_persisted
       end
 
-      it 'redirects to the created exam' do
+      it 'redirects to questions exams' do
         post :create, {:exam => valid_attributes}, valid_session
-        expect(response).to redirect_to(Exam.last)
+        expect(response).to redirect_to(exam_questions_path(Exam.last))
       end
     end
 
