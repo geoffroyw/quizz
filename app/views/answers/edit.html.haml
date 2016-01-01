@@ -1,7 +1,9 @@
-%h1 Editing answer
+.row
+  .col-md-offset-4.col-md-4
+    %h1 Editing answer
 
-= render 'form'
+    = render 'form'
 
-= link_to 'Show', exam_question_answer_path(@answer.question.exam, @answer.question, @answer)
-\|
-= link_to 'Back to question', exam_question_path(@answer.question.exam, @answer.question)
+    = link_to 'Show', exam_question_answer_path(@answer.question.exam, @answer.question, @answer)
+    \|
+    = link_to 'Back to question', exam_question_path(@answer.question.exam, @answer.question)

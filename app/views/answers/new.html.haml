@@ -1,5 +1,7 @@
-%h1 New answer
+.row
+  .col-md-offset-4.col-md-4
+    %h1 New answer
 
-= render 'form'
+    = render 'form'
 
-= link_to 'Back to question', exam_question_path(@question.exam, @question)
+    = link_to 'Back to question', exam_question_path(@question.exam, @question)
