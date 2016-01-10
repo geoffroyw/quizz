@@ -50,7 +50,7 @@ fr:
       add: Ajouter une réponse
       list: Liste de toutes les réponses possibles
       no_correct: Cette question n'a pas de bonne réponse
-      wrong: Vous n'avez pas sélectionné la bonne réponse à la quetion
+      wrong: Vous n'avez pas sélectionné la bonne réponse à la question
     delete:
       success: La question a bien été supprimée
     edit:
