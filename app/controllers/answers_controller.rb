@@ -23,7 +23,7 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to exam_question_path(@answer.question.exam, @answer.question), notice: 'Answer was successfully created.' }
+        format.html { redirect_to exam_question_path(@answer.question.exam, @answer.question), notice: t('answer.save.success') }
         format.json { render :show, status: :created, location: exam_question_answer_path(@answer) }
       else
         format.html { render :new }
@@ -37,7 +37,7 @@ class AnswersController < ApplicationController
   def update
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to exam_question_path(@answer.question.exam, @answer.question), notice: 'Answer was successfully updated.' }
+        format.html { redirect_to exam_question_path(@answer.question.exam, @answer.question), notice: t('answer.save.success') }
         format.json { render :show, status: :ok, location: exam_question_answer_path(@answer) }
       else
         format.html { render :edit }
@@ -51,7 +51,7 @@ class AnswersController < ApplicationController
   def destroy
     @answer.destroy
     respond_to do |format|
-      format.html { redirect_to exam_question_path(@question.exam, @question), notice: 'Answer was successfully destroyed.' }
+      format.html { redirect_to exam_question_path(@question.exam, @question), notice: t('answer.delete.success') }
       format.json { head :no_content }
     end
   end

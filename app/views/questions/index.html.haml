@@ -2,13 +2,13 @@
 .row
   .col-md-12
     %h1
-      Listing questions of exam
+      =t('questions.list')
       =@exam.name
     %table.table.table-striped
       %thead
         %tr
-          %th Question
-          %th Actions
+          %th=t('questions.name')
+          %th=t('actions')
 
       %tbody
         - @questions.each do |question|
@@ -17,9 +17,9 @@
             %td
               = link_to edit_exam_question_path(question.exam, question) do
                 %span.glyphicon.glyphicon-pencil
-              = link_to exam_question_path(question.exam, question), :method => :delete, :data => { :confirm => 'Are you sure?' } do
+              = link_to exam_question_path(question.exam, question), :method => :delete, :data => { :confirm => t('delete.confirm') } do
                 %span.glyphicon.glyphicon-trash
 
     %br
 
-    = link_to 'New Question', new_exam_question_path(@exam)
+    = link_to t('question.new'), new_exam_question_path(@exam)

@@ -4,26 +4,27 @@
 .row
   .col-md-12
     %h1
-      Exam:
+      =t('exam.name')
       =@question.exam.name
 
     %h2
-      Question:
+      =t('question.name')
       =@question.text
 
-    %p List of all possibles answers:
+    %p
+      =t('question.answer.list')
 
     -if @question.has_only_false_answer
       .alert.alert-warning{:role => 'alert'}
-        %strong Warning!
-        This question does not have a correct answer
+        %strong=t('warning')
+        =t('question.answer.no_correct')
 
     %table.table.table-striped
       %thead
         %tr
-          %th Answer
-          %th Is correct?
-          %th Actions?
+          %th=t('answer.name')
+          %th=t('answer.is_correct')
+          %th=t('actions')
 
       %tbody
         - @question.answers.each do |answer|
@@ -36,8 +37,8 @@
               = link_to exam_question_answer_path(answer.question.exam, answer.question, answer), :method => :delete, :data => { :confirm => 'Are you sure?' } do
                 %span.glyphicon.glyphicon-trash
 
-= link_to 'Edit question', edit_exam_question_path(@question.exam, @question)
+= link_to t('question.edit.action'), edit_exam_question_path(@question.exam, @question)
 \|
-= link_to 'Add answer', new_exam_question_answer_path(@question.exam, @question)
+= link_to t('question.answer.add'), new_exam_question_answer_path(@question.exam, @question)
 \|
-= link_to 'Back to exam', exam_path(@question.exam)
+= link_to t('backExam'), exam_path(@question.exam)

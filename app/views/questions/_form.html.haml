@@ -1,7 +1,7 @@
 = form_for [@exam,@question] do |f|
   - if @question.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@question.errors.count, 'error')} prohibited this question from being saved:"
+      %h2= t('question.save.error', count: @question.errors.count)
       %ul
         - @question.errors.full_messages.each do |msg|
           %li= msg
@@ -10,4 +10,4 @@
     = f.label :text
     = f.text_field :text, :class => 'form-control'
   .form-group
-    = f.submit 'Save', :class => 'btn btn-success'
+    = f.submit t('save'), :class => 'btn btn-success'

@@ -1,0 +1,71 @@
+---
+fr:
+  actions: Actions
+  answer:
+    delete:
+      success: La réponse a bien été supprimée
+    edit: Modification de la réponse
+    is_correct: Bonne réponse ?
+    name: Réponse
+    new: Nouvelle réponse
+    save:
+      error:
+        one: "%{count} erreur ont empêché l'engistrement de la réponse"
+        other: "%{count} erreurs ont empêché l'engistrement de la réponse"
+      success: La réponse a bien été enregistée
+  back: Retour
+  backExam: Retour au quizz
+  backQuestion: Retour à la question
+  delete:
+    confirm: Etes-vous sûr?
+  error: Erreur !
+  exam:
+    answer:
+      action: Envoyer mes réponses
+      congrats:
+        head: Félicitations !
+        message: Vous avez correctement répondu à toutes les questions
+    delete:
+      success: Le quizz a bien été supprimé
+    edit:
+      name: Modifier le quizz
+      title: Modification du Quizz
+    name: Quizz
+    save:
+      error:
+        one: "%{count} erreur ont empêché l'engistrement du quizz"
+        other: "%{count} erreurs ont empêché l'engistrement du quizz"
+      success: Le quizz a bien été enregistré
+  exams:
+    list: Liste des quizz
+    name: Nom
+    new: Nouveau quizz
+  menu:
+    createExam: Créer un quizz
+    home: Accueil
+    login: Connexion
+    logout: Se déconnecter
+  question:
+    answer:
+      add: Ajouter une réponse
+      list: Liste de toutes les réponses possibles
+      no_correct: Cette question n'a pas de bonne réponse
+      wrong: Vous n'avez pas sélectionné la bonne réponse à la quetion
+    delete:
+      success: La question a bien été supprimée
+    edit:
+      action: Modifier les questions
+      title: Modification de la question
+    name: Question
+    new: Ajouter une nouvelle question
+    save:
+      error:
+        one: "%{count} erreur ont empêché l'engistrement de la question"
+        other: "%{count} erreurs ont empêché l'engistrement de la question"
+      success: La question a bien été enregistrée
+  questions:
+    list: Liste des questions du quizz
+    name: Question
+  save: Enregistrer
+  show: Voir
+  warning: Attention !

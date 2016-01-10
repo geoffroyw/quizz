@@ -1,23 +1,71 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
+---
 en:
-  hello: "Hello world"
+  actions: Actions
+  answer:
+    delete:
+      success: Answer was successfully deleted
+    edit: Editing Answer
+    is_correct: Is correct?
+    name: Answer
+    new: New Answer
+    save:
+      error:
+        one: "%{count} error prohibited this answer from being saved"
+        other: "%{count} errors prohibited this answer from being saved"
+      success: Answer was successfully
+  back: Back
+  backExam: Back to exam
+  backQuestion: Back to question
+  delete:
+    confirm: Are you sure?
+  error: Error!
+  exam:
+    answer:
+      action: Send my answers
+      congrats:
+        head: Well done!
+        message: Vous avez correctement répondu à toutes les questions
+    delete:
+      success: Exam was successfully deleted
+    edit:
+      name: Edit exam
+      title: Editing exam
+    name: Exam
+    save:
+      error:
+        one: "%{count} error prohibited this exam from being saved"
+        other: "%{count} errors prohibited this exam from being saved"
+      success: Exam was successfully saved
+  exams:
+    list: Available exams
+    name: Name
+    new: New exam
+  menu:
+    createExam: Create exam
+    home: Home
+    login: Log In
+    logout: Log Out
+  question:
+    answer:
+      add: Add answer
+      list: List of all possibles answers
+      no_correct: This question does not have a correct answer
+      wrong: You didn't selected the right answer to this question
+    delete:
+      success: The question was successfully deleted
+    edit:
+      action: Edit questions
+      title: Editing question
+    name: Question
+    new: Add new question
+    save:
+      error:
+        one: "%{count} error prohibited this question from being saved"
+        other: "%{count} errors prohibited this question from being saved"
+      success: "'Question was successfully created.'"
+  questions:
+    list: Listing questions of exam
+    name: Question
+  save: Save
+  show: Show
+  warning: Warning!
