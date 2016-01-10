@@ -1,9 +1,9 @@
 .row
   .col-md-offset-4.col-md-4
-    %h1 Editing question
+    %h1=t('question.edit.title')
 
     = render 'form'
 
-    = link_to 'Show', exam_question_path(@question.exam, @question)
+    = link_to =t('show'), exam_question_path(@question.exam, @question)
     \|
-    = link_to 'Back', exam_questions_path(@question.exam)
+    = link_to t('back'), exam_questions_path(@question.exam)

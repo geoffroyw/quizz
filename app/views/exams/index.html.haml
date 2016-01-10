@@ -1,13 +1,13 @@
-%h1 Available exams
+%h1=t('exams.list')
 .row
   .col-md-12
 
     %table.table.table-striped
       %thead
         %tr
-          %th Name
+          %th= t('exams.name')
           - if user_signed_in?
-            %th Actions
+            %th= t('actions')
 
       %tbody
         - @exams.each do |exam|
@@ -17,5 +17,5 @@
               %td
                 = link_to edit_exam_path(exam) do
                   %span.glyphicon.glyphicon-pencil
-                = link_to exam, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                = link_to exam, :method => :delete, :data => { :confirm => t('delete.confirm') } do
                   %span.glyphicon.glyphicon-trash

@@ -10,12 +10,12 @@
     %div#navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav
         %li.active
-          =link_to 'Home', root_path
+          =link_to t('menu.home'), root_path
         - if user_signed_in?
           %li
-            =link_to 'Create exam', new_exam_path
+            =link_to t('menu.createExam'), new_exam_path
           %li
-            =link_to 'Log out', destroy_user_session_path, :method => :delete
+            =link_to t('menu.logout'), destroy_user_session_path, :method => :delete
         -else
           %li
-            =link_to 'Log in', new_user_session_path
+            =link_to t('menu.login'), new_user_session_path

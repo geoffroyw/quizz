@@ -8,17 +8,17 @@
 -unless @errors.nil?
   -unless @errors.any?
     .alert.alert-success{:role => 'alert'}
-      %strong Well done!
-      You successfully answer all the question
+      %strong= t('exam.answer.congrats.head')
+      =t('exam.answer.congrats.message')
 
 = form_tag(validate_exam_path(@exam), method: :post) do
   - @exam.questions.each do |question|
     = render 'question', :question => question
-  =submit_tag('Send my answers', :class => 'btn btn-sm btn-success')
+  =submit_tag(t('exam.answer.action'), :class => 'btn btn-sm btn-success')
 
 %br
 %br
 -if user_signed_in?
-  = link_to 'Edit', edit_exam_path(@exam)
+  = link_to t('exam.edit.name'), edit_exam_path(@exam)
   \|
-= link_to 'Back', exams_path
+= link_to t('back'), exams_path

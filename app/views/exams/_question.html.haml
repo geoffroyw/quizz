@@ -2,8 +2,8 @@
   -unless @errors.nil?
     -if @errors.include? question
       .alert.alert-danger{:role => 'alert'}
-        %strong Error!
-        You didn't selected the right answer to this question
+        %strong=t('error')
+        =t('question.answer.wrong')
   %p= question.text
   %ul.list-unstyled
     -question.answers.each do |answer|
