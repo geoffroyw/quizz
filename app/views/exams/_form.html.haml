@@ -1,0 +1,16 @@
+= form_for @exam do |f|
+  - if @exam.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@exam.errors.count, "error")} prohibited this exam from being saved:"
+      %ul
+        - @exam.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :minimal_score
+    = f.number_field :minimal_score
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions
+    = f.submit 'Save'
