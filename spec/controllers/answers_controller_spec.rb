@@ -43,7 +43,7 @@ RSpec.describe AnswersController, type: :controller do
   describe 'GET #new' do
     login_user
     it 'assigns a new answer as @answer' do
-      get :new, {:question_id => @question.id, :exam_id => @question.exam.id}, valid_session
+      get :new, {:question_id => @question.id, :quizz_id => @question.quizz.id}, valid_session
       expect(assigns(:answer)).to be_a_new(Answer)
     end
   end
@@ -52,7 +52,7 @@ RSpec.describe AnswersController, type: :controller do
     login_user
     it 'assigns the requested answer as @answer' do
       answer = Answer.create! valid_attributes
-      get :edit, {:id => answer.to_param, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
+      get :edit, {:id => answer.to_param, :question_id => @question.id, :quizz_id => @question.quizz.id}, valid_session
       expect(assigns(:answer)).to eq(answer)
     end
   end
@@ -62,31 +62,31 @@ RSpec.describe AnswersController, type: :controller do
     context 'with valid params' do
       it 'creates a new Answer' do
         expect {
-          post :create, {:answer => valid_attributes, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
+          post :create, {:answer => valid_attributes, :question_id => @question.id, :quizz_id => @question.quizz.id}, valid_session
         }.to change(Answer, :count).by(1)
       end
 
       it 'assigns a newly created answer as @answer' do
-        post :create, {:answer => valid_attributes, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
+        post :create, {:answer => valid_attributes, :question_id => @question.id, :quizz_id => @question.quizz.id}, valid_session
         expect(assigns(:answer)).to be_a(Answer)
         expect(assigns(:answer)).to be_persisted
         expect(assigns(:answer).question).to eq(@question)
       end
 
       it 'redirects to the created answer question' do
-        post :create, {:answer => valid_attributes, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
-        expect(response).to redirect_to(exam_question_path(Answer.last.question.exam, Answer.last.question))
+        post :create, {:answer => valid_attributes, :question_id => @question.id, :quizz_id => @question.quizz.id}, valid_session
+        expect(response).to redirect_to(quizz_question_path(Answer.last.question.quizz, Answer.last.question))
       end
     end
 
     context 'with invalid params' do
       it 'assigns a newly created but unsaved answer as @answer' do
-        post :create, {:answer => invalid_attributes, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
+        post :create, {:answer => invalid_attributes, :question_id => @question.id, :quizz_id => @question.quizz.id}, valid_session
         expect(assigns(:answer)).to be_a_new(Answer)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:answer => invalid_attributes, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
+        post :create, {:answer => invalid_attributes, :question_id => @question.id, :quizz_id => @question.quizz.id}, valid_session
         expect(response).to render_template('new')
       end
     end
@@ -101,34 +101,34 @@ RSpec.describe AnswersController, type: :controller do
 
       it 'updates the requested answer' do
         answer = Answer.create! valid_attributes
-        put :update, {:id => answer.to_param, :answer => new_attributes, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
+        put :update, {:id => answer.to_param, :answer => new_attributes, :question_id => @question.id, :quizz_id => @question.quizz.id}, valid_session
         answer.reload
         assert_equal 'new answer text', answer.text
       end
 
       it 'assigns the requested answer as @answer' do
         answer = Answer.create! valid_attributes
-        put :update, {:id => answer.to_param, :answer => valid_attributes, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
+        put :update, {:id => answer.to_param, :answer => valid_attributes, :question_id => @question.id, :quizz_id => @question.quizz.id}, valid_session
         expect(assigns(:answer)).to eq(answer)
       end
 
       it 'redirects to the question of the answer' do
         answer = Answer.create! valid_attributes
-        put :update, {:id => answer.to_param, :answer => valid_attributes, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
-        expect(response).to redirect_to(exam_question_path(answer.question.exam, answer.question))
+        put :update, {:id => answer.to_param, :answer => valid_attributes, :question_id => @question.id, :quizz_id => @question.quizz.id}, valid_session
+        expect(response).to redirect_to(quizz_question_path(answer.question.quizz, answer.question))
       end
     end
 
     context 'with invalid params' do
       it 'assigns the answer as @answer' do
         answer = Answer.create! valid_attributes
-        put :update, {:id => answer.to_param, :answer => invalid_attributes, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
+        put :update, {:id => answer.to_param, :answer => invalid_attributes, :question_id => @question.id, :quizz_id => @question.quizz.id}, valid_session
         expect(assigns(:answer)).to eq(answer)
       end
 
       it "re-renders the 'edit' template" do
         answer = Answer.create! valid_attributes
-        put :update, {:id => answer.to_param, :answer => invalid_attributes, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
+        put :update, {:id => answer.to_param, :answer => invalid_attributes, :question_id => @question.id, :quizz_id => @question.quizz.id}, valid_session
         expect(response).to render_template('edit')
       end
     end
@@ -139,14 +139,14 @@ RSpec.describe AnswersController, type: :controller do
     it 'destroys the requested answer' do
       answer = Answer.create! valid_attributes
       expect {
-        delete :destroy, {:id => answer.to_param, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
+        delete :destroy, {:id => answer.to_param, :question_id => @question.id, :quizz_id => @question.quizz.id}, valid_session
       }.to change(Answer, :count).by(-1)
     end
 
     it 'redirects to  the answers list' do
       answer = Answer.create! valid_attributes
-      delete :destroy, {:id => answer.to_param, :question_id => @question.id, :exam_id => @question.exam.id}, valid_session
-      expect(response).to redirect_to(exam_question_path(@question.exam,@question))
+      delete :destroy, {:id => answer.to_param, :question_id => @question.id, :quizz_id => @question.quizz.id}, valid_session
+      expect(response).to redirect_to(quizz_question_path(@question.quizz, @question))
     end
   end
 

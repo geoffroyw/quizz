@@ -1,0 +1,10 @@
+.row
+  .col-md-offset-4.col-md-4
+    %h1=t('quizz.edit.title')
+
+    = render 'form'
+
+    = link_to t('question.edit.action'), quizz_questions_path(@quizz)
+    \|
+    = link_to t('backQuizz'), @quizz
+

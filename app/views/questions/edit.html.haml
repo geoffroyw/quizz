@@ -4,6 +4,6 @@
 
     = render 'form'
 
-    = link_to =t('show'), exam_question_path(@question.exam, @question)
+    = link_to =t('show'), quizz_question_path(@question.quizz, @question)
     \|
-    = link_to t('back'), exam_questions_path(@question.exam)
+    = link_to t('back'), quizz_questions_path(@question.quizz)

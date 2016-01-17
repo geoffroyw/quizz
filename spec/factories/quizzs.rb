@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :exam do
+  factory :quizz do
     intro_text "MyString"
     name 'test'
   end

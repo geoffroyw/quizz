@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'exams/index', type: :view do
+RSpec.describe 'quizzs/index', type: :view do
   before(:each) do
-    assign(:exams, [
-      Exam.create!(
+    assign(:quizzs, [
+        Quizz.create!(
         :intro_text => 'Intro Text',
         :name => 'name'
       ),
-      Exam.create!(
+        Quizz.create!(
         :intro_text => 'Intro Text',
         :name => 'name'
       )

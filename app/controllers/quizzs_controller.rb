@@ -1,27 +1,27 @@
-class ExamsController < ApplicationController
-  before_action :set_exam, only: [:show, :edit, :update, :destroy, :validate]
+class QuizzsController < ApplicationController
+  before_action :set_quizz, only: [:show, :edit, :update, :destroy, :validate]
 
   before_action :authenticate_user!, only: [:new, :edit,:update, :destroy]
 
 
-  # GET /exams
-  # GET /exams.json
+  # GET /quizzs
+  # GET /quizzs.json
   def index
-    @exams = Exam.all
+    @quizzs = Quizz.all
   end
 
-  # GET /exams/1
-  # GET /exams/1.json
+  # GET /quizzs/1
+  # GET /quizzs/1.json
   def show
     @checked_answer_ids = []
   end
 
-  # GET /exams/new
+  # GET /quizzs/new
   def new
-    @exam = Exam.new
+    @quizz = Quizz.new
   end
 
-  # GET /exams/1/edit
+  # GET /quizzs/1/edit
   def edit
   end
 
@@ -40,8 +40,8 @@ class ExamsController < ApplicationController
 
     end
 
-    exam_question_ids = @exam.questions.map{|q| q.id}
-    exam_question_ids.each do |id|
+    quizz_question_ids = @quizz.questions.map{|q| q.id}
+    quizz_question_ids.each do |id|
       unless selected_question_ids.map{|i| i.to_s}.include? id.to_s
         @errors << Question.find(id)
       end
@@ -52,54 +52,54 @@ class ExamsController < ApplicationController
     render :show
   end
 
-  # POST /exams
-  # POST /exams.json
+  # POST /quizzs
+  # POST /quizzs.json
   def create
-    @exam = Exam.new(exam_params)
+    @quizz = Quizz.new(quizz_params)
 
     respond_to do |format|
-      if @exam.save
-        format.html { redirect_to exam_questions_path(@exam), notice: t('exam.save.success') }
-        format.json { render :show, status: :created, location: @exam }
+      if @quizz.save
+        format.html { redirect_to quizz_questions_path(@quizz), notice: t('quizz.save.success') }
+        format.json { render :show, status: :created, location: @quizz }
       else
         format.html { render :new }
-        format.json { render json: @exam.errors, status: :unprocessable_entity }
+        format.json { render json: @quizz.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /exams/1
-  # PATCH/PUT /exams/1.json
+  # PATCH/PUT /quizzs/1
+  # PATCH/PUT /quizzs/1.json
   def update
     respond_to do |format|
-      if @exam.update(exam_params)
-        format.html { redirect_to @exam, notice: t('exam.save.success') }
-        format.json { render :show, status: :ok, location: @exam }
+      if @quizz.update(quizz_params)
+        format.html { redirect_to @quizz, notice: t('quizz.save.success') }
+        format.json { render :show, status: :ok, location: @quizz }
       else
         format.html { render :edit }
-        format.json { render json: @exam.errors, status: :unprocessable_entity }
+        format.json { render json: @quizz.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /exams/1
-  # DELETE /exams/1.json
+  # DELETE /quizzs/1
+  # DELETE /quizzs/1.json
   def destroy
-    @exam.destroy
+    @quizz.destroy
     respond_to do |format|
-      format.html { redirect_to exams_url, notice: t('exam.delete.success') }
+      format.html { redirect_to quizzs_url, notice: t('quizz.delete.success') }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_exam
-      @exam = Exam.find(params[:id])
+    def set_quizz
+      @quizz = Quizz.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def exam_params
-      params.require(:exam).permit(:intro_text, :name)
+    def quizz_params
+      params.require(:quizz).permit(:intro_text, :name)
     end
 end

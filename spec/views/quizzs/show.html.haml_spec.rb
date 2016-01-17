@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe 'exams/show', type: :view do
+RSpec.describe 'quizzs/show', type: :view do
   before(:each) do
-    @exam = assign(:exam, Exam.create!(
+    @quizz = assign(:quizz, Quizz.create!(
       :intro_text => 'Intro Text',
       :name => 'name'
     ))

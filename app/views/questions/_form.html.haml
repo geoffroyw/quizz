@@ -1,4 +1,4 @@
-= form_for [@exam,@question] do |f|
+= form_for [@quizz,@question] do |f|
   - if @question.errors.any?
     #error_explanation
       %h2= t('question.save.error', count: @question.errors.count)

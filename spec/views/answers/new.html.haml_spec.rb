@@ -13,7 +13,7 @@ RSpec.describe 'answers/new', type: :view do
   it 'renders new answer form' do
     render
 
-    assert_select 'form[action=?][method=?]', exam_question_answers_path(@question.exam, @question, @answer), 'post' do
+    assert_select 'form[action=?][method=?]', quizz_question_answers_path(@question.quizz, @question, @answer), 'post' do
 
       assert_select 'input#answer_text[name=?]', 'answer[text]'
 

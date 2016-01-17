@@ -3,7 +3,7 @@
   .col-md-12
     %h1
       =t('questions.list')
-      =@exam.name
+      =@quizz.name
     %table.table.table-striped
       %thead
         %tr
@@ -13,13 +13,13 @@
       %tbody
         - @questions.each do |question|
           %tr
-            %td= link_to question.text, exam_question_path(question.exam, question)
+            %td= link_to question.text, quizz_question_path(question.quizz, question)
             %td
-              = link_to edit_exam_question_path(question.exam, question) do
+              = link_to edit_quizz_question_path(question.quizz, question) do
                 %span.glyphicon.glyphicon-pencil
-              = link_to exam_question_path(question.exam, question), :method => :delete, :data => { :confirm => t('delete.confirm') } do
+              = link_to quizz_question_path(question.quizz, question), :method => :delete, :data => { :confirm => t('delete.confirm') } do
                 %span.glyphicon.glyphicon-trash
 
     %br
 
-    = link_to t('question.new'), new_exam_question_path(@exam)
+    = link_to t('question.new'), new_quizz_question_path(@quizz)

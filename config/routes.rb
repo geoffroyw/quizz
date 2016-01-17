@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :exams do
+  resources :quizzs do
     member do
       post :validate
     end

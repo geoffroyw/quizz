@@ -23,8 +23,8 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to exam_question_path(@answer.question.exam, @answer.question), notice: t('answer.save.success') }
-        format.json { render :show, status: :created, location: exam_question_answer_path(@answer) }
+        format.html { redirect_to quizz_question_path(@answer.question.quizz, @answer.question), notice: t('answer.save.success') }
+        format.json { render :show, status: :created, location: quizz_question_answer_path(@answer) }
       else
         format.html { render :new }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
@@ -37,8 +37,8 @@ class AnswersController < ApplicationController
   def update
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to exam_question_path(@answer.question.exam, @answer.question), notice: t('answer.save.success') }
-        format.json { render :show, status: :ok, location: exam_question_answer_path(@answer) }
+        format.html { redirect_to quizz_question_path(@answer.question.quizz, @answer.question), notice: t('answer.save.success') }
+        format.json { render :show, status: :ok, location: quizz_question_answer_path(@answer) }
       else
         format.html { render :edit }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
@@ -51,7 +51,7 @@ class AnswersController < ApplicationController
   def destroy
     @answer.destroy
     respond_to do |format|
-      format.html { redirect_to exam_question_path(@question.exam, @question), notice: t('answer.delete.success') }
+      format.html { redirect_to quizz_question_path(@question.quizz, @question), notice: t('answer.delete.success') }
       format.json { head :no_content }
     end
   end

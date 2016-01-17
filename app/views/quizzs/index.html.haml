@@ -1,21 +1,21 @@
-%h1=t('exams.list')
+%h1=t('quizzs.list')
 .row
   .col-md-12
 
     %table.table.table-striped
       %thead
         %tr
-          %th= t('exams.name')
+          %th= t('quizzs.name')
           - if user_signed_in?
             %th= t('actions')
 
       %tbody
-        - @exams.each do |exam|
+        - @quizzs.each do |quizz|
           %tr
-            %td= link_to exam.name, exam
+            %td= link_to quizz.name, quizz
             - if user_signed_in?
               %td
-                = link_to edit_exam_path(exam) do
+                = link_to edit_quizz_path(quizz) do
                   %span.glyphicon.glyphicon-pencil
-                = link_to exam, :method => :delete, :data => { :confirm => t('delete.confirm') } do
+                = link_to quizz, :method => :delete, :data => { :confirm => t('delete.confirm') } do
                   %span.glyphicon.glyphicon-trash

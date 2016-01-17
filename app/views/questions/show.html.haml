@@ -4,8 +4,8 @@
 .row
   .col-md-12
     %h1
-      =t('exam.name')
-      =@question.exam.name
+      =t('quizz.name')
+      =@question.quizz.name
 
     %h2
       =t('question.name')
@@ -32,13 +32,13 @@
             %td= answer.text
             %td= answer.is_correct
             %td
-              = link_to edit_exam_question_answer_path(answer.question.exam, answer.question, answer) do
+              = link_to edit_quizz_question_answer_path(answer.question.quizz, answer.question, answer) do
                 %span.glyphicon.glyphicon-pencil
-              = link_to exam_question_answer_path(answer.question.exam, answer.question, answer), :method => :delete, :data => { :confirm => 'Are you sure?' } do
+              = link_to quizz_question_answer_path(answer.question.quizz, answer.question, answer), :method => :delete, :data => { :confirm => 'Are you sure?' } do
                 %span.glyphicon.glyphicon-trash
 
-= link_to t('question.edit.action'), edit_exam_question_path(@question.exam, @question)
+= link_to t('question.edit.action'), edit_quizz_question_path(@question.quizz, @question)
 \|
-= link_to t('question.answer.add'), new_exam_question_answer_path(@question.exam, @question)
+= link_to t('question.answer.add'), new_quizz_question_answer_path(@question.quizz, @question)
 \|
-= link_to t('backExam'), exam_path(@question.exam)
+= link_to t('backQuizz'), quizz_path(@question.quizz)

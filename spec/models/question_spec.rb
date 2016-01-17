@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Question, type: :model do
   it {should validate_presence_of :text}
-  it {should validate_presence_of :exam}
-  it {should belong_to :exam}
+  it {should validate_presence_of :quizz}
+  it {should belong_to :quizz}
   it {should have_many :answers}
 
   context 'has_only_false_answer' do

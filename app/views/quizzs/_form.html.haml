@@ -1,9 +1,9 @@
-= form_for @exam do |f|
-  - if @exam.errors.any?
+= form_for @quizz do |f|
+  - if @quizz.errors.any?
     #error_explanation
-      %h2= t('exam.save.error', count: @exam.errors.count)
+      %h2= t('quizz.save.error', count: @quizz.errors.count)
       %ul
-        - @exam.errors.full_messages.each do |msg|
+        - @quizz.errors.full_messages.each do |msg|
           %li= msg
 
   .form-group

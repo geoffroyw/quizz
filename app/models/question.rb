@@ -1,8 +1,8 @@
 class Question < ActiveRecord::Base
-  belongs_to :exam
+  belongs_to :quizz
   has_many :answers
 
-  validates_presence_of :exam
+  validates_presence_of :quizz
   validates_presence_of :text
 
   def has_only_false_answer

@@ -14,12 +14,12 @@ fr:
         other: "%{count} erreurs ont empêché l'engistrement de la réponse"
       success: La réponse a bien été enregistée
   back: Retour
-  backExam: Retour au quizz
+  backQuizz: Retour au quizz
   backQuestion: Retour à la question
   delete:
     confirm: Etes-vous sûr?
   error: Erreur !
-  exam:
+  quizz:
     answer:
       action: Envoyer mes réponses
       congrats:
@@ -36,12 +36,12 @@ fr:
         one: "%{count} erreur ont empêché l'engistrement du quizz"
         other: "%{count} erreurs ont empêché l'engistrement du quizz"
       success: Le quizz a bien été enregistré
-  exams:
+  quizzs:
     list: Liste des quizz
     name: Nom
     new: Nouveau quizz
   menu:
-    createExam: Créer un quizz
+    createQuizz: Créer un quizz
     home: Accueil
     login: Connexion
     logout: Se déconnecter
