@@ -53,6 +53,7 @@ RSpec.describe ExamsController, type: :controller do
   end
 
   describe 'GET #new' do
+    login_user
     it 'assigns a new exam as @exam' do
       get :new, {}, valid_session
       expect(assigns(:exam)).to be_a_new(Exam)
@@ -60,6 +61,7 @@ RSpec.describe ExamsController, type: :controller do
   end
 
   describe 'GET #edit' do
+    login_user
     it 'assigns the requested exam as @exam' do
       exam = FactoryGirl.create(:exam)
       get :edit, {:id => exam.to_param}, valid_session
@@ -68,6 +70,7 @@ RSpec.describe ExamsController, type: :controller do
   end
 
   describe 'POST #create' do
+    login_user
     context 'with valid params' do
       it 'creates a new Exam' do
         expect {
@@ -101,6 +104,7 @@ RSpec.describe ExamsController, type: :controller do
   end
 
   describe 'PUT #update' do
+    login_user
     context 'with valid params' do
       let(:new_attributes) {
         {:minimal_score => 1, :name => 'new name'}
@@ -142,6 +146,7 @@ RSpec.describe ExamsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    login_user
     it 'destroys the requested exam' do
       exam = FactoryGirl.create(:exam)
       expect {
