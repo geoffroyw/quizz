@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160117104110) do
+ActiveRecord::Schema.define(version: 20160118210556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answer_submissions", force: :cascade do |t|
+    t.integer  "question_submission_id"
+    t.integer  "answer_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "answers", force: :cascade do |t|
     t.string   "text"
@@ -24,11 +31,25 @@ ActiveRecord::Schema.define(version: 20160117104110) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "exam_submissions", force: :cascade do |t|
+    t.integer  "exam_id"
+    t.integer  "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "exams", force: :cascade do |t|
     t.integer  "minimal_score"
     t.string   "name"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "question_submissions", force: :cascade do |t|
+    t.integer  "exam_submission_id"
+    t.integer  "question_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "questions", force: :cascade do |t|
