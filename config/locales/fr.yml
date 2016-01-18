@@ -45,6 +45,7 @@ fr:
     home: Accueil
     login: Connexion
     logout: Se déconnecter
+    createExam: "Créer un examen"
   question:
     answer:
       add: Ajouter une réponse
@@ -69,3 +70,16 @@ fr:
   save: Enregistrer
   show: Voir
   warning: Attention !
+  exams:
+    name: "Examen"
+    list: "Liste des examens"
+  exam:
+    save:
+      error:
+        one: "%{count} erreur ont empêché l'engistrement de l'examen"
+        other: "%{count} erreurs ont empêché l'engistrement de l'exame"
+      success: L'examen a bien été enregistré
+    new: "Nouvel Examen"
+    edit: "Edition de l'examen"
+    form:
+      select_quizzs: "Veuillez sélecter un quizz"

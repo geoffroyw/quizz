@@ -45,6 +45,7 @@ en:
     home: Home
     login: Log In
     logout: Log Out
+    createExam: "Create exam"
   question:
     answer:
       add: Add answer
@@ -69,3 +70,16 @@ en:
   save: Save
   show: Show
   warning: Warning!
+  exams:
+    list: "Listing exams"
+    name: "Exam"
+  exam:
+    save:
+      error:
+         one: "%{count} error prohibited this exam from being saved"
+         other: "%{count} errors prohibited this exam from being saved"
+      success: Exam was successfully saved
+    new: "New exam"
+    edit: "Editing exam"
+    form:
+      select_quizzs: "Please select some quizz"

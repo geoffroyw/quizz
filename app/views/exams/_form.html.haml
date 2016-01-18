@@ -1,16 +1,19 @@
 = form_for @exam do |f|
   - if @exam.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@exam.errors.count, "error")} prohibited this exam from being saved:"
+      %h2= t('exam.save.error', count: @exam.errors.count)
       %ul
         - @exam.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :minimal_score
-    = f.number_field :minimal_score
-  .field
+  .form-group
     = f.label :name
-    = f.text_field :name
-  .actions
-    = f.submit 'Save'
+    = f.text_field :name, :class => 'form-control'
+  .form-group
+    = f.label :minimal_score
+    = f.number_field :minimal_score, :class => 'form-control'
+  .form-group
+    = f.label :quizzs
+    = f.collection_select(:quizz_ids, Quizz.all, :id, :name, {:prompt_text => t('exam.form.select_quizzs')},{:multiple => true})
+  .form-group
+    = f.submit t('save'), :class => 'btn btn-success'

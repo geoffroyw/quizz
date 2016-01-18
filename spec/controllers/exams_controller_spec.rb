@@ -24,7 +24,7 @@ RSpec.describe ExamsController, type: :controller do
   # Exam. As you add validations to Exam, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {:minimal_score => 1, :name => 'exam name'}
+    {:minimal_score => 1, :name => 'name', :quizz_ids => [FactoryGirl.create(:quizz).id]}
   }
 
   let(:invalid_attributes) {
@@ -38,7 +38,7 @@ RSpec.describe ExamsController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns all exams as @exams' do
-      exam = Exam.create! valid_attributes
+      exam = FactoryGirl.create(:exam)
       get :index, {}, valid_session
       expect(assigns(:exams)).to eq([exam])
     end
@@ -46,7 +46,7 @@ RSpec.describe ExamsController, type: :controller do
 
   describe 'GET #show' do
     it 'assigns the requested exam as @exam' do
-      exam = Exam.create! valid_attributes
+      exam = FactoryGirl.create(:exam)
       get :show, {:id => exam.to_param}, valid_session
       expect(assigns(:exam)).to eq(exam)
     end
@@ -61,7 +61,7 @@ RSpec.describe ExamsController, type: :controller do
 
   describe 'GET #edit' do
     it 'assigns the requested exam as @exam' do
-      exam = Exam.create! valid_attributes
+      exam = FactoryGirl.create(:exam)
       get :edit, {:id => exam.to_param}, valid_session
       expect(assigns(:exam)).to eq(exam)
     end
@@ -107,20 +107,20 @@ RSpec.describe ExamsController, type: :controller do
       }
 
       it 'updates the requested exam' do
-        exam = Exam.create! valid_attributes
+        exam = FactoryGirl.create(:exam)
         put :update, {:id => exam.to_param, :exam => new_attributes}, valid_session
         exam.reload
         expect(exam.name).to eq('new name')
       end
 
       it 'assigns the requested exam as @exam' do
-        exam = Exam.create! valid_attributes
+        exam = FactoryGirl.create(:exam)
         put :update, {:id => exam.to_param, :exam => valid_attributes}, valid_session
         expect(assigns(:exam)).to eq(exam)
       end
 
       it 'redirects to the exam' do
-        exam = Exam.create! valid_attributes
+        exam = FactoryGirl.create(:exam)
         put :update, {:id => exam.to_param, :exam => valid_attributes}, valid_session
         expect(response).to redirect_to(exam)
       end
@@ -128,13 +128,13 @@ RSpec.describe ExamsController, type: :controller do
 
     context 'with invalid params' do
       it 'assigns the exam as @exam' do
-        exam = Exam.create! valid_attributes
+        exam = FactoryGirl.create(:exam)
         put :update, {:id => exam.to_param, :exam => invalid_attributes}, valid_session
         expect(assigns(:exam)).to eq(exam)
       end
 
       it "re-renders the 'edit' template" do
-        exam = Exam.create! valid_attributes
+        exam = FactoryGirl.create(:exam)
         put :update, {:id => exam.to_param, :exam => invalid_attributes}, valid_session
         expect(response).to render_template('edit')
       end
@@ -143,14 +143,14 @@ RSpec.describe ExamsController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'destroys the requested exam' do
-      exam = Exam.create! valid_attributes
+      exam = FactoryGirl.create(:exam)
       expect {
         delete :destroy, {:id => exam.to_param}, valid_session
       }.to change(Exam, :count).by(-1)
     end
 
     it 'redirects to the exams list' do
-      exam = Exam.create! valid_attributes
+      exam = FactoryGirl.create(:exam)
       delete :destroy, {:id => exam.to_param}, valid_session
       expect(response).to redirect_to(exams_url)
     end

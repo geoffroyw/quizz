@@ -1,7 +1,4 @@
-%h1 Editing exam
-
-= render 'form'
-
-= link_to 'Show', @exam
-\|
-= link_to 'Back', exams_path
+.row
+  .col-md-offset-4.col-md-4
+    %h1=t('exam.edit')
+    = render 'form'
