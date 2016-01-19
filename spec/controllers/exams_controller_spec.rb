@@ -50,6 +50,12 @@ RSpec.describe ExamsController, type: :controller do
       get :show, {:id => exam.to_param}, valid_session
       expect(assigns(:exam)).to eq(exam)
     end
+
+    it 'assigns a new exam submission' do
+      exam = FactoryGirl.create(:exam)
+      get :show, {:id => exam.to_param}, valid_session
+      expect(assigns(:exam_submission)).to be_a_new(ExamSubmission)
+    end
   end
 
   describe 'GET #new' do

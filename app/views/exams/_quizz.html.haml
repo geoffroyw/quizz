@@ -1,0 +1,33 @@
+.tab-pane{:role => 'tabpanel', :id => "quizz-#{quizz.id}", :class => ('active' if @exam.quizzs.first == quizz)}
+
+  .page-header
+    %h2= quizz.name
+  .well
+    %p= quizz.intro_text
+
+  -unless @errors.nil?
+    -unless @errors.any?
+      .alert.alert-success{:role => 'alert'}
+        %strong= t('quizz.answer.congrats.head')
+        =t('quizz.answer.congrats.message')
+
+
+  - quizz.questions.each do |question|
+    .section
+      -unless @errors.nil?
+        -if @errors.include? question
+          .alert.alert-danger{:role => 'alert'}
+            %strong=t('error')
+            =t('question.answer.wrong')
+      %p= question.text
+      %ul.list-unstyled
+        -question.answers.each do |answer|
+          %li
+            = check_box_tag "question[#{question.id}]answer_ids[]", answer.id, @checked_answer_ids.include?(answer.id)
+            = answer.text
+
+  - if @exam.quizzs.last == quizz
+    =submit_tag t('quizz.answer.action'), :class => 'btn btn-sm btn-success'
+  - else
+    %button.btn.btn-sm.btn-primary{'data-action' => 'next-tab', 'data-current-tab' => "quizz-#{quizz.id}"}
+      =t('exam.quizz.next')

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :exams
+
   devise_for :users
+
   resources :quizzs do
     member do
       post :validate
@@ -8,6 +9,12 @@ Rails.application.routes.draw do
 
     resources :questions do
       resources :answers, :only => [:edit, :create, :new, :destroy, :update]
+    end
+  end
+
+  resources :exams do
+    member do
+      resources :exam_submissions, :only => :create
     end
   end
 

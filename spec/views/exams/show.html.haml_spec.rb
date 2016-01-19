@@ -8,6 +8,7 @@ RSpec.describe 'exams/show', type: :view do
                        :minimal_score => 1,
                        :name => 'Name'
                    ))
+    @exam_submission = assign(:exam_submission, ExamSubmission.new(:exam => @exam))
   end
 
   it 'renders attributes in <p>' do

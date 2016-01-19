@@ -1,12 +1,13 @@
-%p#notice= notice
+.page-header
+  %h1= @exam.name
 
-%p
-  %b Minimal score:
-  = @exam.minimal_score
-%p
-  %b Name:
-  = @exam.name
-
-= link_to 'Edit', edit_exam_path(@exam)
-\|
-= link_to 'Back', exams_path
+=form_tag(exam_submissions_path(@exam), method: :post) do
+  %div
+    %ul.nav.nav-tabs{:role => 'tablist'}
+      -@exam.quizzs.each do |q|
+        %li{:role => 'presentation', :class => ('active' if @exam.quizzs.first == q)}
+          %a{:href => "#quizz-#{q.id}", 'aria-controls' => "quizz-#{q.id}", :role => 'tab', 'data-toggle' => 'tab'}
+            =q.name
+    .tab-content
+      -@exam.quizzs.each do |q|
+        =render 'exams/quizz', :quizz => q

@@ -12,6 +12,8 @@ class ExamsController < ApplicationController
   # GET /exams/1
   # GET /exams/1.json
   def show
+    @checked_answer_ids = []
+    @exam_submission = ExamSubmission.new
   end
 
   # GET /exams/new
