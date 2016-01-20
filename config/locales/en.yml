@@ -86,4 +86,4 @@ en:
     quizz:
       next: "Next quizz"
     passed: "Congratulations! You passed the exam with a score of %{submission_score} out of %{maximal_score}"
-    failed: "You failed the exam, with a score of %{submissio_score} which is below the minimal score of %{minimal_score}"
+    failed: "You failed the exam, with a score of %{submission_score} which is below the minimal score of %{minimal_score}"
