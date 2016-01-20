@@ -2,10 +2,11 @@
 // All this logic will automatically be available in application.js.
 
 'use strict';
-$(document).ready(function () {
-    $('button[data-action="next-tab"]').click(function (e) {
+$(document).on('ready page:load', function () {
+    $('a.next-tab').click(function (e) {
         e.preventDefault();
         var id = $(this).parents('.tab-pane').next().attr('id');
         $('a[aria-controls="' + id + '"').tab('show');
     });
+
 });

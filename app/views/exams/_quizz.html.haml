@@ -3,7 +3,7 @@
   .page-header
     %h2= quizz.name
   .well
-    %p= quizz.intro_text
+    %p= simple_format quizz.intro_text
 
   -unless @errors.nil?
     -unless @errors.any?
@@ -29,5 +29,5 @@
   - if @exam.quizzs.last == quizz
     =submit_tag t('quizz.answer.action'), :class => 'btn btn-sm btn-success'
   - else
-    %button.btn.btn-sm.btn-primary{'data-action' => 'next-tab', 'data-current-tab' => "quizz-#{quizz.id}"}
+    %a.btn.btn-sm.btn-primary.next-tab{'data-action' => 'next-tab', 'data-current-tab' => "quizz-#{quizz.id}"}
       =t('exam.quizz.next')

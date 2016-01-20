@@ -3,7 +3,7 @@
 .page-header
   %h1= @quizz.name
 .well
-  %p= @quizz.intro_text
+  %p= simple_format(@quizz.intro_text)
 
 -unless @errors.nil?
   -unless @errors.any?
