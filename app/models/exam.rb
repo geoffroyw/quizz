@@ -1,5 +1,6 @@
 class Exam < ActiveRecord::Base
-  has_many :quizzs
+  has_many :quizzs, :through => :exam_quizzs
+  has_many :exam_quizzs
 
   validates_presence_of :minimal_score
   validates_presence_of :name

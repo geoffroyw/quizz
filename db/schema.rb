@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160118210556) do
+ActiveRecord::Schema.define(version: 20160120173453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 20160118210556) do
     t.boolean  "is_correct"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "exam_quizzs", force: :cascade do |t|
+    t.integer  "exam_id"
+    t.integer  "quizz_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "exam_submissions", force: :cascade do |t|
