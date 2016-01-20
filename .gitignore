@@ -36,3 +36,5 @@ config/initializers/secret_token.rb
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
+/lib/tasks/data_load.rake
+
