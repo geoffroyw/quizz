@@ -23,7 +23,7 @@
       %ul.list-unstyled
         -question.answers.each do |answer|
           %li
-            = check_box_tag "question[#{question.id}]answer_ids[]", answer.id, @checked_answer_ids.include?(answer.id)
+            = radio_button_tag "question[#{question.id}]answer_ids[]", answer.id, @checked_answer_ids.include?(answer.id)
             = answer.text
 
   - if @exam.quizzs.last == quizz
